@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import './App.css';
 import Post from './Post';
 
@@ -7,11 +8,11 @@ function Posts(props) {
 
 	useEffect(() => {
 		const loadPosts = async () => {
-			const res = await fetch('https://jsonplaceholder.typicode.com/posts');
-			const data = await res.json();
-			// set json data in local storage initially
-			localStorage.setItem('data', JSON.stringify(data));
-			setPosts(data);
+			axios.get('https://jsonplaceholder.typicode.com/posts').then((response) => {
+				// set json data in local storage initially
+				localStorage.setItem('data', JSON.stringify(response.data));
+				setPosts(response.data);
+			});
 		};
 
 		// Check if data exists in local storage
