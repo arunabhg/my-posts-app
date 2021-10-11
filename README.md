@@ -1,70 +1,45 @@
-# Getting Started with Create React App
+# Introduction to the My-Posts-App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+It includes data fetching through axios using an API and showing the data as posts in a responsive UI using React. 
 
-In the project directory, you can run:
+The current version of the project caches the data using `react-redux` and does not store it in any database.
 
-### `yarn start`
+In future versions as the dataset size increase or the complexity increases, data may be stored in a database.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Available operations
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Currently, the project supports all CRUD operations
 
-### `yarn test`
+### `Reading`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+User can `read` all posts by scrolling through.\ 
+Initial post data is fetched using a fake API.
+Each post includes a random image generated using Picsum (https://picsum.photos)
 
-### `yarn build`
+### `Creation`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+User can create new posts by clicking on `Create Post` button.\
+A modal form is used in submitting the new post title and description to the already created posts.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### `Updation`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+User can click on the `Edit` button below a post to update it.\
+A modal form pops up and user can edit the post title and description using it.
 
-### `yarn eject`
+### `Deletion`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**Note: this is a one-way operation. Once you `delete`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Pressing the `delete` button below a post opens a modal dialog confirming the deletion of a post. If the user confirms, the post is deleted.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## App versions
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+`v1.0`: Included basic fetching of data using fetch API and presenting it in a responsive design.
 
-## Learn More
+`v2.0`: Data fetching done using axios and full CRUD implemented. 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
