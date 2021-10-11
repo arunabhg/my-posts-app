@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+// import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -11,23 +11,23 @@ function Posts(props) {
 	const [posts, setPosts] = useState([]);
 	const [showModal, setShowModal] = useState(false);
 
-	const [title, setTitle] = useState('');
-	const [description, setDescription] = useState('');
+	// const [title, setTitle] = useState('');
+	// const [description, setDescription] = useState('');
 
 	const handleClose = () => setShowModal(false);
 	const handleShow = () => setShowModal(true);
 
-	const handleChange = (e) => {
-		if (e.target.controlId === 'ControlInputTitle') {
-			const newTitle = e.target.value;
-			//console.log(newTitle);
-			setTitle(newTitle);
-		} else {
-			const newDesc = e.target.value;
-			//console.log(newDesc);
-			setDescription(newDesc);
-		}
-	};
+	// const handleChange = (e) => {
+	// 	if (e.target.controlId === 'ControlInputTitle') {
+	// 		const newTitle = e.target.value;
+	// 		//console.log(newTitle);
+	// 		setTitle(newTitle);
+	// 	} else {
+	// 		const newDesc = e.target.value;
+	// 		//console.log(newDesc);
+	// 		setDescription(newDesc);
+	// 	}
+	// };
 
 	const handleSubmit = (args) => {
 		//event.preventDefault();
