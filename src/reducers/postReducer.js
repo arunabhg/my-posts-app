@@ -19,9 +19,11 @@ function postReducer(currentState = initialState, action) {
 			};
 
 		case DELETE_POST:
-			//console.log(el);
+			//console.log(action.payload);
+			const filteredList = currentState.posts.filter((i) => i.id !== action.payload);
+			//console.log(filteredList);
 			return {
-				posts: [currentState.posts.filter((i) => i !== action.payload)]
+				posts: filteredList
 			};
 
 		default:
