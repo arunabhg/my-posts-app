@@ -3,17 +3,20 @@ import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button } from 'react-bootstrap';
+import { Modal, Button } from 'react-bootstrap';
 import Posts from './Posts';
-import ModalForm from './ModalForm';
-import { getPosts, createPost, editPost, deletePost } from './actions/postActions';
+import AddForm from './AddForm';
+import { getPosts } from './actions/postActions';
 //import { GET_POSTS } from './actions/types';
 
 function PostWrapper(props) {
 	const dispatch = useDispatch();
+	const [show, setShow] = useState(false);
+	const { posts } = useSelector((state) => state.post);
+	// console.log(posts);
 
-	//const { posts } = useSelector((state) => state.postList);
-	//console.log(posts);
+	const handleShow = () => setShow(true);
+	const handleClose = () => setShow(false);
 
 	useEffect(() => {
 		const loadPosts = async () => {
@@ -27,13 +30,32 @@ function PostWrapper(props) {
 		loadPosts();
 	}, []);
 
+	useEffect(() => {
+		handleClose();
+	}, [posts]);
+
 	return (
 		<div className='App'>
 			<h1 className='title'>{props.pageTitle}</h1>
 			<div className='subtitle'>
 				<h1>{props.postTitle}</h1>
 				<div>
-					<ModalForm />
+					<Button variant='primary' onClick={handleShow} data-toggle='modal'>
+						Create Post
+					</Button>
+					<Modal show={show} onHide={handleClose}>
+						<Modal.Header closeButton>
+							<Modal.Title>Create Post</Modal.Title>
+						</Modal.Header>
+						<Modal.Body>
+							<AddForm />
+						</Modal.Body>
+						<Modal.Footer>
+							<Button variant='secondary' onClick={handleClose}>
+								Close
+							</Button>
+						</Modal.Footer>
+					</Modal>
 				</div>
 			</div>
 			<div className='Wrapper'>
