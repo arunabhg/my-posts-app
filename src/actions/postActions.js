@@ -1,4 +1,4 @@
-import { GET_POSTS, CREATE_POST, EDIT_POST, UPDATE_POST, DELETE_POST } from './types';
+import { GET_POSTS, CREATE_POST, EDIT_POST, DELETE_POST } from './types';
 
 export const getPosts = (post) => {
 	return {
@@ -14,20 +14,21 @@ export const createPost = (post) => {
 	};
 };
 
-export const editPost = (index) => {
+export const editPost = (index, post) => {
 	return {
 		type: EDIT_POST,
-		payload: index
+		index,
+		payload: post
 	};
 };
 
-export const updatePost = (post, index) => {
-	return {
-		type: UPDATE_POST,
-		post,
-		index
-	};
-};
+// export const updatePost = (post, index) => {
+// 	return {
+// 		type: UPDATE_POST,
+// 		post,
+// 		index
+// 	};
+// };
 
 export const deletePost = (index) => {
 	return {
