@@ -1,28 +1,25 @@
-import { GET_POSTS, CREATE_POST, EDIT_POST, DELETE_POST } from '../actions/types';
+import * as actions from '../actions/types';
 
 const initialState = { posts: [] };
 
 function postReducer(currentState = initialState, action) {
 	switch (action.type) {
-		case GET_POSTS:
+		case actions.GET_POSTS:
 			return { posts: action.payload };
 
-		case CREATE_POST:
+		case actions.CREATE_POST:
 			return { posts: [...currentState.posts, action.payload] };
 
-		case EDIT_POST:
-			console.log(action.payload);
-
-			const updatedList = () =>
-				currentState.posts.map((post, i) =>
-					i === action.index ? [...currentState.posts, action.payload] : post
-				);
+		case actions.UPDATE_POST:
+			const updatedList = currentState.posts.map((postItem) =>
+				postItem.id !== action.payload.id ? postItem : action.payload
+			);
 
 			return {
 				posts: updatedList
 			};
 
-		case DELETE_POST:
+		case actions.DELETE_POST:
 			const filteredList = currentState.posts.filter((i) => i.id !== action.payload);
 
 			return {
