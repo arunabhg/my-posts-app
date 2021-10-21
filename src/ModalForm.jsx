@@ -1,33 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { createPost } from './actions/postActions';
+import { createPost, updatePost } from './actions/postActions';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Modal, Button, Form } from 'react-bootstrap';
 
 function ModalForm(props) {
-	const [show, setShow] = useState(false);
-	const [newTitle, setNewTitle] = useState('');
-	const [newDescription, setNewDescription] = useState('');
+	// console.log(props);
+	const [show, setShow] = useState(props.show);
+
+	const [title, setTitle] = useState('');
+	const [description, setDescription] = useState('');
 
 	const dispatch = useDispatch();
 
-	const handleClose = () => setShow(false);
-	const handleShow = () => setShow(true);
+	useEffect(() => {
+		const loadPosts = () => {
+			if (typeof props.post !== 'undefined' && props.isCreate !== true) {
+				setTitle(props.post.title);
+				setDescription(props.post.body);
+			}
+		};
+		loadPosts();
+	}, [props.post, props.isCreate]);
 
-	const addNewPost = (e) => {
+	//Function to add or update form
+	const addEditForm = (e) => {
 		e.preventDefault();
 
-		const createdPost = {
-			title: newTitle,
-			body: newDescription,
-			id: getRandom(100),
-			userId: getRandom(10)
-		};
+		if (props.isCreate) {
+			const createdPost = {
+				title: title,
+				body: description,
+				id: getRandom(100),
+				userId: getRandom(10)
+			};
 
-		dispatch(createPost(createdPost));
+			dispatch(createPost(createdPost));
+		} else {
+			const updatedPost = {
+				id: props.post.id,
+				title: title,
+				body: description
+			};
 
-		setNewTitle('');
-		setNewDescription('');
+			dispatch(updatePost(updatedPost));
+		}
+
+		setTitle('');
+		setDescription('');
 
 		setShow(false);
 	};
@@ -39,36 +59,33 @@ function ModalForm(props) {
 
 	return (
 		<>
-			<Button variant='primary' onClick={handleShow}>
-				Create Post
-			</Button>
-			<Modal show={show} onHide={handleClose}>
+			<Modal show={props.show} onHide={props.close}>
 				<Modal.Header closeButton>
-					<Modal.Title>Create Post</Modal.Title>
+					<Modal.Title>{props.isCreate === true ? 'Create Post' : 'Edit Post'}</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					<Form onSubmit={addNewPost}>
+					<Form onSubmit={addEditForm}>
 						<Form.Group className='mb-3' controlId='ControlInput1'>
 							<Form.Label>Post Title</Form.Label>
 							<Form.Control
 								type='text'
-								placeholder='Enter post title'
-								value={newTitle}
-								onChange={(e) => setNewTitle(e.target.value)}
+								placeholder={props.isCreate === true ? 'Enter post title' : ''}
+								value={title}
+								onChange={(e) => setTitle(e.target.value)}
 							/>
 						</Form.Group>
 						<Form.Group className='mb-3' controlId='ControlInput2'>
 							<Form.Label>Post Description</Form.Label>
 							<Form.Control
-								type='textarea'
-								rows='3'
-								placeholder='Enter post description'
-								value={newDescription}
-								onChange={(e) => setNewDescription(e.target.value)}
+								as='textarea'
+								rows={3}
+								placeholder={props.isCreate === true ? 'Enter post description' : ''}
+								value={description}
+								onChange={(e) => setDescription(e.target.value)}
 							/>
 						</Form.Group>
-						<Button variant='primary' type='submit' onClick={handleClose}>
-							Save Changes
+						<Button variant='primary' type='submit' onClick={props.close}>
+							{props.isCreate === true ? 'Save Changes' : 'Update Changes'}
 						</Button>
 					</Form>
 				</Modal.Body>
