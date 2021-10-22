@@ -62,12 +62,88 @@ img {
 	border-radius: 5px;
 }
 
-/* .post-body {
-} */
-
 .control-buttons {
 	display: flex;
 	justify-content: space-between;
 
 	padding: 10px 10px;
+}
+
+.navMenu {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	width: 100%;
+	height: 100%;
+	list-style-type: none;
+	background-color: darkslategrey;
+	margin: 0px;
+	padding: 5px;
+}
+
+.navLink:link {
+	color: #fff;
+	font-size: 1.6rem;
+	line-height: 1.6rem;
+	text-decoration: none;
+}
+
+.navLink:visited {
+	color: #fff;
+}
+
+.navLink:hover {
+	color: yellow;
+}
+
+.navLink:active {
+	color: teal;
+}
+
+.activeRoute {
+	background-color: yellow;
+	border-bottom: 0.4rem solid teal;
+	cursor: not-allowed;
+}
+
+/* Light Mode Styles for HOC */
+
+.bg-light {
+	background-color: #fff;
+	margin: 0 20px;
+}
+
+.heading-light {
+	color: #222;
+}
+
+.para-light {
+	color: #222;
+}
+
+.btn-light {
+	background-color: #222;
+	color: #fff;
+	font-size: 15px;
+	cursor: pointer;
+}
+
+/* Dark Mode Styles for HOC */
+
+.bg-dark {
+	background-color: #222;
+	margin: 10px 20px;
+}
+
+.heading-dark {
+	color: #fff;
+}
+
+.para-dark {
+	color: #fff;
+}
+
+.btn-dark {
+	background-color: #fff;
+	color: #222;
 }
