@@ -6,11 +6,17 @@ import { Provider } from 'react-redux';
 import store from './store/store';
 import reportWebVitals from './reportWebVitals';
 import ErrorBoundary from './ErrorBoundary';
+import { BrowserRouter } from 'react-router-dom';
+import { ThemeProvider } from './hoc/withThemeContext';
 
 ReactDOM.render(
 	<ErrorBoundary>
 		<Provider store={store}>
-			<App />
+			<BrowserRouter>
+				<ThemeProvider>
+					<App />
+				</ThemeProvider>
+			</BrowserRouter>
 		</Provider>
 	</ErrorBoundary>,
 	document.getElementById('root')
