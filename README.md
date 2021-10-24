@@ -40,4 +40,5 @@ Pressing the `delete` button below a post opens a modal dialog confirming the de
 
 `v2.0`: Data fetching done using axios and full CRUD implemented.
 
-`v3.0`: Added routing using React-router, implementation of Custom hook for button toggle, \ and a higher order order component to switch between light and dark themes.
+`v3.0`: Added routing using React-router, implementation of Custom hook for button toggle,\
+and a higher order order component to switch between light and dark themes.
